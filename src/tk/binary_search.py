@@ -44,3 +44,8 @@ print("Time for tk binary search: ")
 print(tk_binary_search(nums, 99))
 print(tk_binary_search(nums, 888))
 print(tk_binary_search(nums, 800))
+
+"""
+Can you rewrite the above function so that it uses recursion?
+TBD
+"""
