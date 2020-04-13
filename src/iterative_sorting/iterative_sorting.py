@@ -1,4 +1,16 @@
 # TO-DO: Complete the selection_sort() function below
+"""
+Start with current index = 0
+
+For all indices EXCEPT the last index:
+
+a. Loop through elements on right-hand-side of current index and find the smallest element
+
+b. Swap the element at current index with the smallest element found in above loop
+
+"""
+
+
 def selection_sort(arr):
     # loop through n-1 elements
     for i in range(0, len(arr) - 1):
@@ -15,7 +27,15 @@ def selection_sort(arr):
 
     return arr
 
+
 # TO-DO:  implement the Bubble Sort function below
+"""
+Loop through your array
+Compare each element to its neighbor
+If elements in wrong position (relative to each other, swap them)
+If no swaps performed, stop. Else, go back to the element at index 0 and repeat step 1.
+
+"""
 
 
 def bubble_sort(arr):
