@@ -98,6 +98,8 @@ def count_sort(arr, maximum=-1):
         return arr
     max = arr[0]
     for num in arr:
+        if num < 0:
+            return "Error, negative numbers not allowed in Count Sort"
         if num > max:
             max = num
 
@@ -108,8 +110,6 @@ def count_sort(arr, maximum=-1):
     # Store the count at the corresponding index in count array
     for num in arr:
         count_arr[num] += 1
-        if num < 0:
-            AssertionError("Error, negative numbers not allowed in Count Sort")
     # print(count_arr)
 
     # modify the count array such that each element at each index stores the sum of previous counts.
