@@ -60,12 +60,82 @@ def bubble_sort2(arr):
 
 
 # STRETCH: implement the Count Sort function below
+"""
+Look into Counting Sort.
+
+How is this algorithm different from other iterative sorting algorithms?
+
+It "sorts the elements of an array by counting the number of occurrences 
+of each unique element in the array. The count is stored in an auxiliary 
+array and the sorting is done by mapping the count as an index of the auxiliary array."
+
+What are the advantages/disadvantages to this type of sorting algorithm?
+Take a look a the pseudocode for this algorithm and try implementing it in Python.
+
+1. Find out the maximum element (let it be max) from the given array.
+
+2. Initialize an array of length max+1 with all elements 0. 
+This array is used for storing the count of the elements in the array.
+
+3. Store the count of each element at their respective index in count array
+
+4. Store cumulative sum of the elements of the count array. That is,
+modify the count array such that each element at each index 
+  stores the sum of previous counts. 
+
+5. Find the index of each element of the original array in count array. 
+This gives the cumulative count. Place the element at the index calculated.
+
+6. After placing each element at its correct position, decrease its count by one.
+
+"""
 
 
 def count_sort(arr, maximum=-1):
+    # Find the largest element in the array
+    # Assuming we can't use the built-in max()?
+    if len(arr) == 0:
+        return arr
+    max = arr[0]
+    for num in arr:
+        if num > max:
+            max = num
 
-    return arr
+    # Initialize count array with all zeros
+    count_arr = [0] * (max + 1)
 
+    # Loop through arr and find the total count of each unique element
+    # Store the count at the corresponding index in count array
+    for num in arr:
+        count_arr[num] += 1
+        if num < 0:
+            AssertionError("Error, negative numbers not allowed in Count Sort")
+    # print(count_arr)
+
+    # modify the count array such that each element at each index stores the sum of previous counts.
+    my_sum = 0
+    for i in range(len(count_arr)):
+        my_sum += count_arr[i]
+        count_arr[i] = my_sum
+    # print(count_arr)
+
+    # Loop thru array.
+    # For each value x in arr, find count_arr[x]. Take that value - 1 to find index to put x in the return_array.
+    # Then decrease the value of count_arr[x] by 1.
+    return_arr = [0] * len(arr)
+
+    for num in arr:
+        # print(num)
+        index = count_arr[num] - 1
+        return_arr[index] = num
+        count_arr[num] -= 1
+
+    print(return_arr)
+    return return_arr
+
+
+# count_sort([3, 3, 1])
+count_sort([4, 6, 3, 1, 3, 9, 2])
 
 """
 Insertion Sort:
@@ -102,4 +172,4 @@ def insertion_sort(arr):
 
 
 my_arr_14 = [6, 14, 13, 7, 14]
-print(insertion_sort(my_arr_14))
+# print(insertion_sort(my_arr_14))
