@@ -11,11 +11,11 @@ def merge(arrA, arrB):
     while len(arrA) > 0 and len(arrB) > 0:
         if arrA[0] < arrB[0]:
             merged_arr[index] = arrA[0]
-            print(merged_arr)
+            # print(merged_arr)
             del arrA[0]
         elif arrB[0] < arrA[0]:
             merged_arr[index] = arrB[0]
-            print(merged_arr)
+            # print(merged_arr)
             del arrB[0]
         index += 1
 
@@ -37,7 +37,7 @@ def merge(arrA, arrB):
 # TO-DO: implement the Merge Sort function below USING RECURSION
 """
 1. While your data set contains more than one item, split it in half
-2. Once you have gotten down to a single element, you have also *sorted* that element 
+2. Once you have gotten down to a single element, you have also *sorted* that element
    (a single element cannot be "out of order")
 3. Start merging your single lists of one element together into larger, sorted sets
 4. Repeat step 3 until the entire data set has been reassembled
@@ -47,8 +47,12 @@ def merge(arrA, arrB):
 
 def merge_sort(arr):
     # TO-DO
+    if len(arr) <= 1:
+        return arr
+    else:
+        return merge(merge_sort(arr[: len(arr)//2]), merge_sort(arr[len(arr)//2:]))
 
-    return arr
+# print(merge_sort([2, 1, 3, 6, 0, 13]))
 
 
 # STRETCH: implement an in-place merge sort algorithm
