@@ -34,7 +34,7 @@ def merge(arrA, arrB):
 
 # print(merge([1, 4, 5], [2, 6, 7]))
 # print(merge([8, 9, 13, 15], [2, 16, 17, 20]))
-# TO-DO: implement the Merge Sort function below USING RECURSION
+
 """
 1. While your data set contains more than one item, split it in half
 2. Once you have gotten down to a single element, you have also *sorted* that element
@@ -56,6 +56,20 @@ def merge_sort(arr):
 
 
 # STRETCH: implement an in-place merge sort algorithm
+
+"""
+"What do you mean by “in-place”? A standard merge sort requires you to allocate a buffer equal in 
+length to the input being sorted. For example, if you wish to sort an array with 1000 elements, 
+it is necessary to allocate an additional scratch array with 1000 elements as a space for merging 
+elements before copying them back to the input array. This is why merge sort has O(n) space complexity.
+
+An in-place sorting algorithm doesn’t require allocating any additional memory for sorting. 
+Several algorithms meet this requirement, including insertion sort and heap sort which have O(1) space 
+complexity. However, in-place merge sort has O(log n) space complexity. 
+This is because, like quick sort, it is a recursive function which requires pushing elements onto the stack.
+"""
+
+
 def merge_in_place(arr, start, mid, end):
     # TO-DO
 
