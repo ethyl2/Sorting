@@ -87,9 +87,49 @@ def merge_sort_in_place(arr, l, r):
 
 # STRETCH: implement the Timsort function below
 # hint: check out https://github.com/python/cpython/blob/master/Objects/listsort.txt
-def timsort(arr):
+"""
+Basic implementation for Timsort:
+We divide the Array into blocks known as Run. 
+We sort those runs using insertion sort one by one 
+and then merge those runs using combine function used in merge sort. 
+If the size of Array is less than run, then Array get sorted just by using Insertion Sort. 
+The size of run may vary from 32 to 64 depending upon the size of the array.
+"""
 
+
+def insertion_sort(arr):
+    for i in range(1, len(arr)):
+        temp = arr[i]
+        j = i
+        while j > 0 and temp < arr[j - 1]:
+            arr[j] = arr[j - 1]
+            j -= 1
+        arr[j] = temp
     return arr
+
+
+def timsort(arr):
+    run_size = 5  # To try this out at first
+    # divide arr into runs of length run_size
+    runs = []
+    for i in range(0, len(arr), run_size):
+        runs.append(arr[i: i + run_size])
+    print(runs)
+    # sort each run using insertion_sort
+    for run in runs:
+        insertion_sort(run)
+    print(runs)
+    # merge runs together using merge() from merge_sort
+    while len(runs) > 1:
+        run1 = runs[0]
+        run2 = runs[1]
+        del runs[0]
+        del runs[0]
+        runs.append(merge(run1, run2))
+    return runs[0]
+
+
+print(timsort([10, 9, 8, 1, 2, 3, 7, 6, 5, 4, 12, 11]))
 
 
 def quick_sort(arr):
@@ -137,7 +177,7 @@ def quick_sort_in_place(arr, low, high):
 
 
 my_arr = [6, 4, 5, 2, 1, 3]
-print(quick_sort_in_place(my_arr, 0, len(my_arr) - 1))
-print(my_arr)
+# print(quick_sort_in_place(my_arr, 0, len(my_arr) - 1))
+# print(my_arr)
 
 # print(quick_sort(shuff()))
