@@ -111,6 +111,8 @@ def insertion_sort(arr):
 def timsort(arr):
     run_size = 5  # To try this out at first
     # divide arr into runs of length run_size
+    if len(arr) < run_size:
+        return insertion_sort(arr)
     runs = []
     for i in range(0, len(arr), run_size):
         runs.append(arr[i: i + run_size])
@@ -129,7 +131,8 @@ def timsort(arr):
     return runs[0]
 
 
-print(timsort([10, 9, 8, 1, 2, 3, 7, 6, 5, 4, 12, 11]))
+# print(timsort([10, 9, 8, 1, 2, 3, 7, 6, 5, 4, 12, 11]))
+print(timsort([55, 32, 59]))
 
 
 def quick_sort(arr):
