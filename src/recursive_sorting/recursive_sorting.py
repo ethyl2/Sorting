@@ -113,4 +113,31 @@ def shuff(n=10):
     return arr
 
 
+def quick_sort_in_place(arr, low, high):
+    print(arr)
+    # if len(arr) <= 1:
+    #    return arr
+    print('low:', low, 'high: ', high)
+    if low < high:
+        pivot = arr[0]
+        pivot_ind = 0
+        for i in range(1, len(arr)):
+            if arr[i] <= pivot:
+                # 2 swaps: 1. pivot (arr[0]) and arr[i]
+                arr[pivot_ind], arr[i] = arr[i], arr[pivot_ind]
+                pivot_ind = i
+                # 2. arr[i] (which contains the pivot value) and arr[where the pivot value should be]
+                while arr[i] < arr[i-1]:
+                    arr[i], arr[i-1] = arr[i-1], arr[i]
+                    pivot_ind = i-1
+        quick_sort_in_place(arr, 0, pivot_ind - 1)
+        quick_sort_in_place(arr, pivot_ind + 1, high)
+    else:
+        return arr
+
+
+my_arr = [6, 4, 5, 2, 1, 3]
+print(quick_sort_in_place(my_arr, 0, len(my_arr) - 1))
+print(my_arr)
+
 # print(quick_sort(shuff()))

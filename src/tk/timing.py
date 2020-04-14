@@ -1,8 +1,10 @@
 
+# from recursive_sorting.recursive_sorting import *
 import time
 import random
+# import sys
+# sys.path.append('../')
 # bubble_sort, selection_sort, insertion_sort, quicksort
-
 
 l1 = list(range(1000))
 random.shuffle(l1)
