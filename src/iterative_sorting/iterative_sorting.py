@@ -153,7 +153,7 @@ c. When the correct index is found, copy temp into this position
 
 """
 
-"""
+
 def insertion_sort(arr):
     # Divide your hand into sorted on the left and unsorted on the right
     # Sorted is just the first element
@@ -172,5 +172,4 @@ def insertion_sort(arr):
 
 
 my_arr_14 = [6, 14, 13, 7, 14]
-# print(insertion_sort(my_arr_14))
-"""
+print(insertion_sort(my_arr_14))
