@@ -1,4 +1,7 @@
-# TO-DO: complete the helper function below to merge 2 sorted arrays
+# The helper function merges 2 sorted arrays
+import random
+
+
 def merge(arrA, arrB):
     elements = len(arrA) + len(arrB)
     merged_arr = [0] * elements
@@ -87,3 +90,27 @@ def merge_sort_in_place(arr, l, r):
 def timsort(arr):
 
     return arr
+
+
+def quick_sort(arr):
+    # Ave time complexity: O(n log n) Worst case: 0(n^2)
+    if len(arr) <= 1:
+        return arr
+    pivot = arr[0]
+    smaller = []
+    larger = []
+    for i in range(1, len(arr)):
+        if arr[i] <= pivot:
+            smaller.append(arr[i])
+        else:
+            larger.append(arr[i])
+    return quick_sort(smaller) + [pivot] + quick_sort(larger)
+
+
+def shuff(n=10):
+    arr = list(range(n))
+    random.shuffle(arr)
+    return arr
+
+
+# print(quick_sort(shuff()))
