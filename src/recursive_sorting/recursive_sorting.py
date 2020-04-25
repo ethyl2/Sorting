@@ -74,6 +74,7 @@ This is because, like quick sort, it is a recursive function which requires push
 def merge_in_place(arr, start, mid, end):
     # TO-DO
     # Instead of sticking values in the merged_arr, need to swap them inside original array.
+    # Consider the 2 halves of the arr, divided by mid, to be like the 2 arrs of merge()
 
     return arr
 
@@ -102,21 +103,21 @@ The size of run may vary from 32 to 64 depending upon the size of the array.
 
 def insertion_sort(arr):
     for i in range(1, len(arr)):
-        temp= arr[i]
-        j= i
+        temp = arr[i]
+        j = i
         while j > 0 and temp < arr[j - 1]:
-            arr[j]= arr[j - 1]
+            arr[j] = arr[j - 1]
             j -= 1
-        arr[j]= temp
+        arr[j] = temp
     return arr
 
 
 def timsort(arr):
-    run_size= 5  # To try this out at first
+    run_size = 5  # To try this out at first
     # divide arr into runs of length run_size
     if len(arr) < run_size:
         return insertion_sort(arr)
-    runs= []
+    runs = []
     for i in range(0, len(arr), run_size):
         runs.append(arr[i: i + run_size])
     print(runs)
@@ -126,8 +127,8 @@ def timsort(arr):
     print(runs)
     # merge runs together using merge() from merge_sort
     while len(runs) > 1:
-        run1= runs[0]
-        run2= runs[1]
+        run1 = runs[0]
+        run2 = runs[1]
         del runs[0]
         del runs[0]
         runs.append(merge(run1, run2))
@@ -142,9 +143,9 @@ def quick_sort(arr):
     # Ave time complexity: O(n log n) Worst case: 0(n^2)
     if len(arr) <= 1:
         return arr
-    pivot= arr[0]
-    smaller= []
-    larger= []
+    pivot = arr[0]
+    smaller = []
+    larger = []
     for i in range(1, len(arr)):
         if arr[i] <= pivot:
             smaller.append(arr[i])
@@ -154,7 +155,7 @@ def quick_sort(arr):
 
 
 def shuff(n=10):
-    arr= list(range(n))
+    arr = list(range(n))
     random.shuffle(arr)
     return arr
 
@@ -165,24 +166,24 @@ def quick_sort_in_place(arr, low, high):
     #    return arr
     print('low:', low, 'high: ', high)
     if low < high:
-        pivot= arr[0]
-        pivot_ind= 0
+        pivot = arr[0]
+        pivot_ind = 0
         for i in range(1, len(arr)):
             if arr[i] <= pivot:
                 # 2 swaps: 1. pivot (arr[0]) and arr[i]
-                arr[pivot_ind], arr[i]= arr[i], arr[pivot_ind]
-                pivot_ind= i
+                arr[pivot_ind], arr[i] = arr[i], arr[pivot_ind]
+                pivot_ind = i
                 # 2. arr[i] (which contains the pivot value) and arr[where the pivot value should be]
                 while arr[i] < arr[i-1]:
-                    arr[i], arr[i-1]= arr[i-1], arr[i]
-                    pivot_ind= i-1
+                    arr[i], arr[i-1] = arr[i-1], arr[i]
+                    pivot_ind = i-1
         quick_sort_in_place(arr, 0, pivot_ind - 1)
         quick_sort_in_place(arr, pivot_ind + 1, high)
     else:
         return arr
 
 
-my_arr= [6, 4, 5, 2, 1, 3]
+my_arr = [6, 4, 5, 2, 1, 3]
 # print(quick_sort_in_place(my_arr, 0, len(my_arr) - 1))
 # print(my_arr)
 
