@@ -79,6 +79,7 @@ def merge_in_place(arr, start, mid, end):
     return arr
 
 
+'''
 def merge_sort_in_place(arr, l, r):
     # TO-DO # Change base case
     if len(arr) <= 1:
@@ -87,7 +88,7 @@ def merge_sort_in_place(arr, l, r):
         return merge_in_place(merge_sort_in_place(arr, 0, len(arr)//2, len(arr) - 1]), 0, len(arr) - 1)
 
     return arr
-
+'''
 
 # STRETCH: implement the Timsort function below
 # hint: check out https://github.com/python/cpython/blob/master/Objects/listsort.txt
@@ -110,6 +111,18 @@ def insertion_sort(arr):
             j -= 1
         arr[j] = temp
     return arr
+
+
+def insertion_sort_recursive(arr, n):
+    if n <= 1:
+        return
+    insertion_sort_recursive(arr, n-1)
+    last = arr[n-1]
+    j = n-2
+    while(j >= 0 and arr[j] > last):
+        arr[j+1] = arr[j]
+        j = j-1
+    arr[j+1] = last
 
 
 def timsort(arr):
@@ -136,7 +149,7 @@ def timsort(arr):
 
 
 # print(timsort([10, 9, 8, 1, 2, 3, 7, 6, 5, 4, 12, 11]))
-print(timsort([55, 32, 59]))
+# print(timsort([55, 32, 59]))
 
 
 def quick_sort(arr):
@@ -186,5 +199,5 @@ def quick_sort_in_place(arr, low, high):
 my_arr = [6, 4, 5, 2, 1, 3]
 # print(quick_sort_in_place(my_arr, 0, len(my_arr) - 1))
 # print(my_arr)
-
+print(insertion_sort_recursive(my_arr, 6))
 # print(quick_sort(shuff()))
