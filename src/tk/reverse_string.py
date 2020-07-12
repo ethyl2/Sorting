@@ -10,5 +10,5 @@ def reverse_string(str):
         return str[-1] + reverse_string(str[: -1])
 
 
-# print(reverse_string('cow'))
+print(reverse_string('cow'))
 # print(reverse_string('123456789'))

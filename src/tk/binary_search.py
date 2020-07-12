@@ -22,8 +22,8 @@ def binary_search(arr, target):
             middle = middle//2
 
 
-binary_search(nums, target2)
-binary_search(nums, target3)
+# binary_search(nums, target2)
+# binary_search(nums, target3)
 
 
 def tk_binary_search(arr, target):
@@ -40,12 +40,16 @@ def tk_binary_search(arr, target):
     return -1
 
 
-print("Time for tk binary search: ")
-print(tk_binary_search(nums, 99))
-print(tk_binary_search(nums, 888))
-print(tk_binary_search(nums, 800))
+# print("Time for tk binary search: ")
+# print(tk_binary_search(nums, 99))
+# print(tk_binary_search(nums, 888))
+# print(tk_binary_search(nums, 800))
 
 """
 Can you rewrite the above function so that it uses recursion?
 TBD
 """
+nums1 = [10, 20, 30]
+nums2 = [30, 20, 10]
+print(tk_binary_search(nums1, 30))
+print(tk_binary_search(nums2, 30))

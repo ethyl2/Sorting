@@ -5,7 +5,6 @@ import random
 def merge(arrA, arrB):
     elements = len(arrA) + len(arrB)
     merged_arr = [0] * elements
-    # TO-DO
 
     # starting at beginning of `a` and `b`
     # compare the next value of each
@@ -49,7 +48,6 @@ def merge(arrA, arrB):
 
 
 def merge_sort(arr):
-    # TO-DO
     if len(arr) <= 1:
         return arr
     else:
@@ -61,38 +59,45 @@ def merge_sort(arr):
 # STRETCH: implement an in-place merge sort algorithm
 
 """
-"What do you mean by “in-place”? A standard merge sort requires you to allocate a buffer equal in 
-length to the input being sorted. For example, if you wish to sort an array with 1000 elements, 
-it is necessary to allocate an additional scratch array with 1000 elements as a space for merging 
+"What do you mean by “in-place”? A standard merge sort requires you to allocate a buffer equal in
+length to the input being sorted. For example, if you wish to sort an array with 1000 elements,
+it is necessary to allocate an additional scratch array with 1000 elements as a space for merging
 elements before copying them back to the input array. This is why merge sort has O(n) space complexity.
 
-An in-place sorting algorithm doesn’t require allocating any additional memory for sorting. 
-Several algorithms meet this requirement, including insertion sort and heap sort which have O(1) space 
-complexity. However, in-place merge sort has O(log n) space complexity. 
+An in-place sorting algorithm doesn’t require allocating any additional memory for sorting.
+Several algorithms meet this requirement, including insertion sort and heap sort which have O(1) space
+complexity. However, in-place merge sort has O(log n) space complexity.
 This is because, like quick sort, it is a recursive function which requires pushing elements onto the stack.
 """
 
 
 def merge_in_place(arr, start, mid, end):
     # TO-DO
+    # Instead of sticking values in the merged_arr, need to swap them inside original array.
+    # Consider the 2 halves of the arr, divided by mid, to be like the 2 arrs of merge()
 
     return arr
 
 
+'''
 def merge_sort_in_place(arr, l, r):
-    # TO-DO
+    # TO-DO # Change base case
+    if len(arr) <= 1:
+        return arr
+    else:
+        return merge_in_place(merge_sort_in_place(arr, 0, len(arr)//2, len(arr) - 1]), 0, len(arr) - 1)
 
     return arr
-
+'''
 
 # STRETCH: implement the Timsort function below
 # hint: check out https://github.com/python/cpython/blob/master/Objects/listsort.txt
 """
 Basic implementation for Timsort:
-We divide the Array into blocks known as Run. 
-We sort those runs using insertion sort one by one 
-and then merge those runs using combine function used in merge sort. 
-If the size of Array is less than run, then Array get sorted just by using Insertion Sort. 
+We divide the Array into blocks known as Run.
+We sort those runs using insertion sort one by one
+and then merge those runs using combine function used in merge sort.
+If the size of Array is less than run, then Array get sorted just by using Insertion Sort.
 The size of run may vary from 32 to 64 depending upon the size of the array.
 """
 
@@ -106,6 +111,18 @@ def insertion_sort(arr):
             j -= 1
         arr[j] = temp
     return arr
+
+
+def insertion_sort_recursive(arr, n):
+    if n <= 1:
+        return
+    insertion_sort_recursive(arr, n-1)
+    last = arr[n-1]
+    j = n-2
+    while(j >= 0 and arr[j] > last):
+        arr[j+1] = arr[j]
+        j = j-1
+    arr[j+1] = last
 
 
 def timsort(arr):
@@ -132,7 +149,7 @@ def timsort(arr):
 
 
 # print(timsort([10, 9, 8, 1, 2, 3, 7, 6, 5, 4, 12, 11]))
-print(timsort([55, 32, 59]))
+# print(timsort([55, 32, 59]))
 
 
 def quick_sort(arr):
@@ -182,5 +199,5 @@ def quick_sort_in_place(arr, low, high):
 my_arr = [6, 4, 5, 2, 1, 3]
 # print(quick_sort_in_place(my_arr, 0, len(my_arr) - 1))
 # print(my_arr)
-
+print(insertion_sort_recursive(my_arr, 6))
 # print(quick_sort(shuff()))

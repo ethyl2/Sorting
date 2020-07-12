@@ -43,6 +43,7 @@ def bubble_sort(arr):
     while had_swaps == True:
         had_swaps = False
         for i in range(0, len(arr) - 1):
+
             if arr[i] > arr[i+1]:
                 arr[i], arr[i+1] = arr[i+1], arr[i]
                 had_swaps = True
@@ -65,8 +66,8 @@ Look into Counting Sort.
 
 How is this algorithm different from other iterative sorting algorithms?
 
-It "sorts the elements of an array by counting the number of occurrences 
-of each unique element in the array. The count is stored in an auxiliary 
+It "sorts the elements of an array by counting the number of occurrences
+of each unique element in the array. The count is stored in an auxiliary
 array and the sorting is done by mapping the count as an index of the auxiliary array."
 
 What are the advantages/disadvantages to this type of sorting algorithm?
@@ -74,16 +75,16 @@ Take a look a the pseudocode for this algorithm and try implementing it in Pytho
 
 1. Find out the maximum element (let it be max) from the given array.
 
-2. Initialize an array of length max+1 with all elements 0. 
+2. Initialize an array of length max+1 with all elements 0.
 This array is used for storing the count of the elements in the array.
 
 3. Store the count of each element at their respective index in count array
 
 4. Store cumulative sum of the elements of the count array. That is,
-modify the count array such that each element at each index 
-  stores the sum of previous counts. 
+modify the count array such that each element at each index
+  stores the sum of previous counts.
 
-5. Find the index of each element of the original array in count array. 
+5. Find the index of each element of the original array in count array.
 This gives the cumulative count. Place the element at the index calculated.
 
 6. After placing each element at its correct position, decrease its count by one.
@@ -135,7 +136,7 @@ def count_sort(arr, maximum=-1):
 
 
 # count_sort([3, 3, 1])
-count_sort([4, 6, 3, 1, 3, 9, 2])
+# count_sort([4, 6, 3, 1, 3, 9, 2])
 
 """
 Insertion Sort:
@@ -172,4 +173,36 @@ def insertion_sort(arr):
 
 
 my_arr_14 = [6, 14, 13, 7, 14]
-print(insertion_sort(my_arr_14))
+# print(insertion_sort(my_arr_14))
+
+
+"""
+Custom bubble sort, created with Hui on 7-11-2020.
+It combines both versions of bubble sort.
+We also experimented to see if we could increase i when the algorithm runs into sequential numbers, like 4,5,6
+but not successful yet.
+"""
+
+
+def bubble_sort_custom(arr):
+    i = 0
+    needs_sorting = True
+    while i < len(arr) and needs_sorting:
+        needs_sorting = False
+        j = 0
+        while j < len(arr) - i - 1:
+            # I'm not sure if this last inner while really helps anything.
+            while arr[j] + 1 == arr[j+1]:
+                j += 1
+            if arr[j] > arr[j+1]:
+                needs_sorting = True
+                arr[j], arr[j+1] = arr[j+1], arr[j]
+            j += 1
+        i += 1
+    return arr
+
+
+print(bubble_sort_custom([1, 96, 97, 98, 25, 4, 5, 2, 0, 87]))
+# print(bubble_sort_custom([2, 6, 3, 4, 5]))
+# print(bubble_sort([2, 6, 3, 4, 5]))
+# print(bubble_sort([1, 96, 97, 98, 25, 4, 5, 2, 0, 87]))
